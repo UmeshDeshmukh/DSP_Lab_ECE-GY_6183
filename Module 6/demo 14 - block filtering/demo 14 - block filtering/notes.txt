@@ -1,0 +1,31 @@
+
+We need to install scipy:
+
+https://www.scipy.org
+
+https://www.scipy.org/install.html
+
+I installed spicy on my computer with the terminal command:
+python3 -m pip install --user scipy
+
+------------------
+Demos
+------------------
+
+demo_filter.py
+ - compute the output of the difference equation one sample at a time
+
+demo_filter_blocks.py
+
+demo_filter_blocks_mtlb.m
+ - Initialization of states...
+ - Matlab command 'filter' with states as optional input and output arguments.
+ - Proper initialization of states is needed so as to avoid blocking artifacts.
+
+demo_filter_blocks_corrected.py - lfilter 
+
+compare_signals.m
+
+In Python, the command 'lfilter' (for Linear FILTER) in the library 'scipy' works like 'filter' in Matlab.
+
+
