@@ -1,0 +1,85 @@
+
+
+ y(t) = b0 x(t) + G x(t - T)
+
+ y(n) = b0 x(n) + G x(n - N) 
+
+  N = T * Fs
+
+  Fs = 16000 samples/sec
+  T = 0.1 sec
+
+  N = 1600 samples
+
+n = 0
+   [x(-4) x(-3) x(-2) x(-1)]
+
+   [ 0 0 0 0]
+
+n = 1 
+   [x(-3) x(-2) x(-1) x(0)]
+
+n = 2
+   [x(-2) x(-1) x(0) x(1)]
+
+n = 3
+   [x(-1) x(0) x(1) x(2)]
+
+
+
+	buffer = [ 0   0   0   0  ]
+n = 0
+
+	buffer = [ 0   0   0  x(0) ]
+n = 1
+
+	buffer = [ 0   0  x(0) x(1) ]
+n = 2
+
+	buffer = [ 0  x(0) x(1) x(2) ]
+n = 3
+
+	buffer = [ x(0) x(1) x(2) x(4) ]
+n = 4
+
+
+
+
+
+
+Circular Buffer:
+
+Initialization:
+   [ 0   0   0   0  ]
+
+n = 0
+k = 0
+   [x(-4) x(-3) x(-2) x(-1)]
+
+n = 1
+k = 1
+   [x(0) x(-3) x(-2) x(-1)]
+
+n = 2
+k = 2
+   [x(0) x(1) x(-2) x(-1)]
+
+n = 3
+k = 3
+   [x(0) x(1) x(2) x(-1)]
+
+n = 4 
+k = 0
+   [x(0) x(1) x(2) x(3)]
+
+n = 5
+k = 1
+   [x(4) x(1) x(2) x(3)]
+
+
+
+
+
+
+
+
