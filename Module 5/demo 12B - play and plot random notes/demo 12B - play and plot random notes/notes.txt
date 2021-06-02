@@ -1,0 +1,5 @@
+
+
+This demo program play sounds at random times according to a random number generator. The tones are produces using a second-order recursive difference equation. 
+
+This demo illustrates filtering (via a difference equation) where the signal is written to the output audio device in blocks.

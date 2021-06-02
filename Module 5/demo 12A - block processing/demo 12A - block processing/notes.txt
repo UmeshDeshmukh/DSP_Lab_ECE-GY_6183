@@ -1,0 +1,12 @@
+
+
+y(n) = x(n) cos( 2 pi f n / Fs)
+
+om = 2 pi f / Fs
+y(n) = x(n) cos(n om)
+
+theta = 0
+for n = 0, 1, 2, 
+	y(n) = x(n) cos(theta)
+	theta = theta + om
+end

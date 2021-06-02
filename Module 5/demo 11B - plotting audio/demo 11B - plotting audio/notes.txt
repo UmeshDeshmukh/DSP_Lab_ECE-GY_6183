@@ -1,0 +1,9 @@
+
+plot_wave_file.py
+
+plot_wave_file_and_play.pyplot_microphone_input.py	Explore:
+	Use msec for time axis
+	Change RATE, BLOCKLEN,
+
+draw() is to be used in interactive mode.
+show() is to be used in non-interactive mode.
