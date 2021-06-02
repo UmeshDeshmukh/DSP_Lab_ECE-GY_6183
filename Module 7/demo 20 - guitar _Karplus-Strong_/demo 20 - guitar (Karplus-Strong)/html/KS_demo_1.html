@@ -1,0 +1,182 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>KS_demo_1</title><meta name="generator" content="MATLAB 9.6"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2019-08-04"><meta name="DC.source" content="KS_demo_1.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>KS_demo_1</h1><!--introduction--><p>Illustration of the Karplus-Strong method</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Define filter</a></li><li><a href="#2">Define input signal</a></li><li><a href="#3">Computer output of filter</a></li><li><a href="#4">Display output signal</a></li><li><a href="#5">Frequency response of filter</a></li><li><a href="#7">Pole-zero diagram</a></li></ul></div><h2 id="1">Define filter</h2><pre class="codeinput">clear
+
+<span class="comment">% Karplus-Strong paramters</span>
+K = 0.9;
+N = 10;
+
+a = [1 zeros(1, N-1) -K/2 -K/2];
+b = 1;
+</pre><h2 id="2">Define input signal</h2><pre class="codeinput"><span class="comment">% input signal</span>
+x = [-N/2:N/2 zeros(1, 80)];
+L = length(x);
+
+figure(1)
+clf
+stem(0:L-1, x, <span class="string">'filled'</span>)
+</pre><img vspace="5" hspace="5" src="KS_demo_1_01.png" alt=""> <h2 id="3">Computer output of filter</h2><pre class="codeinput"><span class="comment">% output signal</span>
+y = filter(b, a, x);
+</pre><h2 id="4">Display output signal</h2><pre class="codeinput">figure(2)
+clf
+subplot(2, 1, 1)
+stem(0:L-1, x, <span class="string">'filled'</span>)
+title(<span class="string">'Input signal'</span>)
+
+subplot(2, 1, 2)
+stem(0:L-1, y, <span class="string">'filled'</span>)
+title(<span class="string">'Output signal'</span>)
+</pre><img vspace="5" hspace="5" src="KS_demo_1_02.png" alt=""> <h2 id="5">Frequency response of filter</h2><pre class="codeinput">[H, om] = freqz(b, a);
+
+f = om/(2 * pi);
+
+figure(2)
+clf
+plot(f, abs(H))
+xlabel(<span class="string">'Normalized frequency (cycles/sample)'</span>)
+title(<span class="string">'Frequency response'</span>)
+</pre><img vspace="5" hspace="5" src="KS_demo_1_03.png" alt=""> <pre class="codeinput">f1 = 1/(N+0.5)
+line([f1 f1], [0 10], <span class="string">'color'</span>, <span class="string">'red'</span>, <span class="string">'linewidth'</span>, 1)
+</pre><pre class="codeoutput">
+f1 =
+
+    0.0952
+
+</pre><img vspace="5" hspace="5" src="KS_demo_1_04.png" alt=""> <h2 id="7">Pole-zero diagram</h2><pre class="codeinput">figure(1)
+clf
+zplane(b, a)
+</pre><img vspace="5" hspace="5" src="KS_demo_1_05.png" alt=""> <p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2019a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% KS_demo_1
+% Illustration of the Karplus-Strong method
+
+%% Define filter
+
+clear
+
+% Karplus-Strong paramters
+K = 0.9;
+N = 10;
+
+a = [1 zeros(1, N-1) -K/2 -K/2];
+b = 1;
+
+%% Define input signal
+
+% input signal
+x = [-N/2:N/2 zeros(1, 80)];
+L = length(x);
+
+figure(1)
+clf
+stem(0:L-1, x, 'filled')
+
+%% Computer output of filter
+
+% output signal
+y = filter(b, a, x);
+
+%% Display output signal
+
+figure(2)
+clf
+subplot(2, 1, 1)
+stem(0:L-1, x, 'filled')
+title('Input signal')
+
+subplot(2, 1, 2)
+stem(0:L-1, y, 'filled')
+title('Output signal')
+
+
+%% Frequency response of filter
+
+[H, om] = freqz(b, a);
+
+f = om/(2 * pi);
+
+figure(2)
+clf
+plot(f, abs(H))
+xlabel('Normalized frequency (cycles/sample)')
+title('Frequency response')
+
+%%
+
+f1 = 1/(N+0.5)
+line([f1 f1], [0 10], 'color', 'red', 'linewidth', 1)
+
+%% Pole-zero diagram
+
+figure(1)
+clf
+zplane(b, a)
+
+##### SOURCE END #####
+--></body></html>
